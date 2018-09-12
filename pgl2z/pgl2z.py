@@ -42,6 +42,9 @@ class PGL2Z(FinitelyGeneratedMatrixGroup_generic):
     def index_set(self):
         return (1,2,3)
 
+    def has_left_descent(self, i):
+        return NotImplemented #TODO: Implement this
+
     def simple_reflection(self, i):
         if i == 1:
             return self._s1
