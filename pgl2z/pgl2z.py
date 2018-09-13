@@ -8,8 +8,9 @@ from sage.structure.unique_representation import UniqueRepresentation
 from sage.groups.matrix_gps.finitely_generated import FinitelyGeneratedMatrixGroup_generic
 from sage.categories.coxeter_groups import CoxeterGroups
 from sage.combinat.root_system.coxeter_matrix import CoxeterMatrix
+from sage.matrix.constructor import matrix
 from sage.rings.all import ZZ
-from pgl2z.element import PGL2Z_Element
+from .element import PGL2Z_Element
 
 class PGL2Z(FinitelyGeneratedMatrixGroup_generic):
 #class PGL2Z(UniqueRepresentation, FinitelyGeneratedMatrixGroup_generic):
@@ -41,9 +42,6 @@ class PGL2Z(FinitelyGeneratedMatrixGroup_generic):
 
     def index_set(self):
         return (1,2,3)
-
-    def has_left_descent(self, i):
-        return NotImplemented #TODO: Implement this
 
     def simple_reflection(self, i):
         if i == 1:
