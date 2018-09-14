@@ -8,6 +8,6 @@ An implementation of the projective linear group of 2x2 matrices over the intege
     sage: s1.descents()
     sage: from pgl2z.chamber import FundamentalChamber as C0
     sage: C0.separated_from(s1*C0, C0.walls[0])
-    sage: H = IwahoriHeckeAlgebra(ZZ, 0, 0, W)
+    sage: H = IwahoriHeckeAlgebra(W, 0, 0, ZZ)
     sage: T = H.T()
     sage: T1, T2, T3 = T.algebra_generators()
