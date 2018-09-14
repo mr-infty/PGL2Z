@@ -12,8 +12,7 @@ from sage.matrix.constructor import matrix
 from sage.rings.all import ZZ
 from .element import PGL2Z_Element
 
-class PGL2Z(FinitelyGeneratedMatrixGroup_generic):
-#class PGL2Z(UniqueRepresentation, FinitelyGeneratedMatrixGroup_generic):
+class PGL2Z(UniqueRepresentation, FinitelyGeneratedMatrixGroup_generic):
     Element = PGL2Z_Element
     r"""
     An implementation of the extended modular group, i.e.

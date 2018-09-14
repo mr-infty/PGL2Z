@@ -38,7 +38,9 @@ class PGL2Z_Element(MatrixGroupElement_generic):
             raise KeyError(str(index))
 
     def __mul__(self, other):
-        if isinstance(other, HyperbolicPointUHP): #TODO: Support other models
+        if isinstance(other, PGL2Z_Element):
+            return PGL2Z_Element(self.parent(), self.matrix()*other.matrix())
+        elif isinstance(other, HyperbolicPointUHP): #TODO: Support other models
             z = other.coordinates()
             if z is infinity:
                 a = self['b']
