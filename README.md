@@ -63,9 +63,37 @@ Concretely,
 
     sage: S.<a,b> = ZZ['a','b']
     sage: L = S.fraction_field()
-    sage: R.<Xbar> = L['X'].quotient(X^2 - (b**2 + 4*a))
-    sage: q1 = (b+Xbar)/2
-    sage: q2 = (b-Xbar)/2
+    sage: R.<xbar> = L['x'].quotient(x^2 - (b**2 + 4*a))
+    sage: q1 = (b+xbar)/2
+    sage: q2 = (b-xbar)/2
     sage: H = IwahoriHeckeAlgebra(W, q1, q2, R)
 
-should work (it doesn't at the moment, for some reason).
+should work, at least in any just world. However it doesn't, namely for two
+reasons: 1) Since Sage relies on PARI for computations with rings, it's subject
+to the same (silly) constraints. Namely, in a ring extension the variables of
+the base ring must always be bigger (in the order that's used) than the new
+variables being added. So, the above example should be modified to this:
+
+    sage: S.<z,y> = ZZ['z','y']
+    sage: L = S.fraction_field()
+    sage: R.<xbar> = L['x'].quotient(x^2 - (y**2 + 4*z))
+    sage: q1 = (y+xbar)/2
+    sage: q2 = (y-xbar)/2
+    sage: H = IwahoriHeckeAlgebra(W, q1, q2, R)
+
+However, this still doesn't work, because: 2) The constructor of
+`IwahoriHeckeAlgebra` uses the function `is_square` to check whether the
+product `q1*q2` is a square, and this function only supports certain rings.
+
+TL;DR: Just forget about `IwahoriHeckeAlgebra`, and instantiate the derived
+class `IwahoriHeckeAlgebra_nonstandard` instead, which is used in any way
+behind the scenes for all computations.
+
+    sage: from sage.algebra.iwahori_hecke_algebra import
+    IwahoriHeckeAlgebra_nonstandard
+    sage: H = IwahoriHeckeAlgebra_nonstandard(W)
+    A generic Iwahori-Hecke algebra of type [ 1  3  2]
+    [ 3  1 -1]
+    [ 2 -1  1] in u,-u^-1*v^2 over Multivariate Laurent Polynomial Ring in u, v over Integer Ring
+    sage: T = H.T()
+    sage: T1, T2, T3 = T.algebra_generators()
