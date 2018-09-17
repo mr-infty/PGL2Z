@@ -85,7 +85,7 @@ However, this still doesn't work, because: 2) The constructor of
 `IwahoriHeckeAlgebra` uses the function `is_square` to check whether the
 product `q1*q2` is a square, and this function only supports certain rings.
 
-TL;DR: Just forget about `IwahoriHeckeAlgebra`, and instantiate the derived
+**TL;DR:** Just forget about `IwahoriHeckeAlgebra`, and instantiate the derived
 class `IwahoriHeckeAlgebra_nonstandard` instead, which is used in any way
 behind the scenes for all computations.
 
